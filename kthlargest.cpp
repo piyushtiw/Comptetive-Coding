@@ -5,6 +5,54 @@
 
 using namespace std;
 
+class Solution
+{
+private:
+  int quick_fun(vector<int> &nums, int s, int e, int k)
+  {
+    int j = nums[e];
+    int t = s - 1;
+
+    for (int i = s; i < e; i++)
+    {
+      if (nums[i] > j)
+      {
+        t++;
+        swap(nums[i], nums[t]);
+      }
+    }
+    t++;
+
+    swap(nums[t], nums[e]);
+
+    if (t == k)
+      return nums[t];
+    else if (t > k)
+    {
+      return quick_fun(nums, s, t - 1, k);
+    }
+    else
+    {
+      return quick_fun(nums, t + 1, e, k);
+    }
+  }
+
+public:
+  int findKthLargest(vector<int> &nums, int k)
+  {
+    priority_queue<int, vector<int>, greater<int>> q;
+
+    for (auto i : nums)
+    {
+      q.push(i);
+      if (q.size() > k)
+        q.pop();
+    }
+
+    return q.top();
+  }
+};
+
 class KthLargest
 {
 public:
