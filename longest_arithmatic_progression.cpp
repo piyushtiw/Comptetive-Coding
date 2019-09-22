@@ -1,9 +1,15 @@
+#include<iostream>
+#include<vector>
+#include<map>
+
+using namespace std;
+
 class Solution
 {
 public:
   int longestArithSeqLength(vector<int> &A)
   {
-    vector<vector<int>> dp(A.size(), vector<int>(A.size(), 0));
+    vector<vector<int> > dp(A.size(), vector<int>(A.size(), 0));
     int ans = 2;
     map<int, int> m;
 
@@ -27,3 +33,17 @@ public:
     return ans;
   }
 };
+
+int  main(){
+  vector < int> v;
+  v.push_back(2);
+  v.push_back(2);
+  v.push_back(2);
+  v.push_back(2);
+
+  Solution obj;
+
+  cout << obj.longestArithSeqLength(v);
+
+  return 0;
+}
